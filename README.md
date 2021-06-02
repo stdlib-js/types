@@ -36,8 +36,8 @@ limitations under the License.
 
 ## Installation
 
-``` bash
-$ npm install @stdlib/types
+```bash
+npm install @stdlib/types
 ```
 
 </section>
