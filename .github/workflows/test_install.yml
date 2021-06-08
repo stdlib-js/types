@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Install dependencies via npm
+      - name: Install production dependencies via npm
         run: |
           npm install --only=prod
       - uses: act10ns/slack@v1
