@@ -20,6 +20,8 @@ limitations under the License.
 
 # Type Declarations
 
+[![NPM version][npm-image]][npm-url] [![dependencies][dependencies-image]][dependencies-url]
+
 > TypeScript type declarations for stdlib.
 
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
@@ -158,6 +160,18 @@ Copyright &copy; 2016-2021. The Stdlib [Authors][stdlib-authors].
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
 <section class="links">
+
+[npm-image]: http://img.shields.io/npm/v/@stdlib/types.svg
+[npm-url]: https://npmjs.org/package/@stdlib/types
+
+[test-image]: https://github.com/stdlib-js/types/actions/workflows/test.yml/badge.svg
+[test-url]: https://github.com/stdlib-js/types/actions/workflows/test.yml
+
+[coverage-image]: https://img.shields.io/codecov/c/github/stdlib-js/types/main.svg
+[coverage-url]: https://codecov.io/github/stdlib-js/types?branch=main
+
+[dependencies-image]: https://img.shields.io/david/stdlib-js/types
+[dependencies-url]: https://david-dm.org/stdlib-js/types/main
 
 [stdlib]: https://github.com/stdlib-js/stdlib
 
