@@ -1,6 +1,6 @@
 {
   "name": "@stdlib/types",
-  "version": "0.0.2-alpha.7",
+  "version": "0.0.2",
   "description": "stdlib TypeScript type declarations.",
   "license": "Apache-2.0",
   "author": {
