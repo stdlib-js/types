@@ -18,11 +18,11 @@
 
 /// <reference types="@stdlib/types"/>
 
-import * as array from '@stdlib/types/array';
-import * as iter from '@stdlib/types/iter';
-import * as ndarray from '@stdlib/types/ndarray';
-import * as obj from '@stdlib/types/object';
-import * as random from '@stdlib/types/random';
+import * as array from './../array';
+import * as iter from './../iter';
+import * as ndarray from './../ndarray';
+import * as obj from './../object';
+import * as random from './../random';
 
 /**
 * Returns an iterator protocol-compliant object.
