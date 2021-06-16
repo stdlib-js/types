@@ -31,7 +31,7 @@
 *
 * const x: ArrayLike = [ 1, 2, 3 ];
 */
-declare module './../array' {
+declare module '@stdlib/types/array' {
 	/**
 	* An array-like value.
 	*
@@ -97,7 +97,7 @@ declare module './../array' {
 *     'next': () => { return { 'value': 0, 'done': false }; }
 * };
 */
-declare module './../iter' {
+declare module '@stdlib/types/iter' {
 	/**
 	* Interface describing an iterator protocol-compliant object.
 	*
@@ -220,8 +220,8 @@ declare module './../iter' {
 *     }
 * };
 */
-declare module './../ndarray' {
-	import { ArrayLike } from './../array';
+declare module '@stdlib/types/ndarray' {
+	import { ArrayLike } from '@stdlib/types/array';
 
 	/**
 	* Data type.
@@ -397,8 +397,8 @@ declare module './../ndarray' {
 *     'value': 'beep'
 * };
 */
-declare module './../object' {
-	import { ArrayLike, TypedArray } from './../array';
+declare module '@stdlib/types/object' {
+	import { ArrayLike, TypedArray } from '@stdlib/types/array';
 
 	/**
 	* Interface describing a data property descriptor object.
@@ -538,8 +538,8 @@ declare module './../object' {
 *
 * const rand: PRNG = () => 3.14;
 */
-declare module './../random' {
-	import { ArrayLike } from './../array';
+declare module '@stdlib/types/random' {
+	import { ArrayLike } from '@stdlib/types/array';
 
 	/**
 	* A pseudorandom number generator (PRNG).
