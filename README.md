@@ -20,7 +20,7 @@ limitations under the License.
 
 # Type Declarations
 
-[![NPM version][npm-image]][npm-url] [![dependencies][dependencies-image]][dependencies-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][test-image]][test-url] [![Coverage Status][coverage-image]][coverage-url] [![dependencies][dependencies-image]][dependencies-url]
 
 > TypeScript type declarations for stdlib.
 
