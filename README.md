@@ -53,7 +53,7 @@ npm install @stdlib/types
 
 import { ArrayLike } from '@stdlib/types/array';
 
-function sum( x: ArrayLike ): number {
+function sum( x: ArrayLike<number> ): number {
     let s = 0.0;
     for ( let i = 0; i < x.length; i++ ) {
         s += x[ i ];
