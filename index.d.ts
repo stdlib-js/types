@@ -37,12 +37,12 @@ declare module '@stdlib/types/array' {
 	/**
 	* Data type.
 	*/
-	type DataType = 'float64' | 'float32' | 'int32' | 'int16' | 'int8' | 'uint32' | 'uint16' | 'uint8' | 'uint8c' | 'complex64' | 'complex128' | 'generic'; // tslint:disable-line:max-line-length
+	type DataType = RealOrComplexDataType | 'generic';
 
 	/**
 	* Data type for real-valued typed arrays.
 	*/
-	type RealDataType = 'float64' | 'float32' | 'int32' | 'int16' | 'int8' | 'uint32' | 'uint16' | 'uint8' | 'uint8c'; // tslint:disable-line:max-line-length
+	type RealDataType = FloatDataType | IntegerDataType;
 
 	/**
 	* Data type for floating-point typed arrays.
@@ -52,7 +52,7 @@ declare module '@stdlib/types/array' {
 	/**
 	* Data type for integer typed arrays.
 	*/
-	type IntegerDataType = 'int32' | 'int16' | 'int8' | 'uint32' | 'uint16' | 'uint8' | 'uint8c'; // tslint:disable-line:max-line-length
+	type IntegerDataType = SignedIntegerDataType | UnsignedIntegerDataType;
 
 	/**
 	* Data type for signed integer typed arrays.
@@ -147,6 +147,15 @@ declare module '@stdlib/types/array' {
 	type NumericArray = Array<number> | TypedArray;
 
 	/**
+	* Any array.
+	*
+	* @example
+	* const x: AnyArray = [ 1, 2, 3 ];
+	* const y: AnyArray = new Float64Array( 10 );
+	*/
+	type AnyArray = Array<any> | RealOrComplexTypedArray;
+
+	/**
 	* An array or typed array.
 	*
 	* @example
@@ -162,7 +171,7 @@ declare module '@stdlib/types/array' {
 	* const x: TypedArray = new Float64Array( 10 );
 	* const y: TypedArray = new Uint32Array( 10 );
 	*/
-	type TypedArray = Int8Array | Uint8Array | Uint8ClampedArray | Int16Array | Uint16Array | Int32Array | Uint32Array | Float32Array | Float64Array; // tslint:disable-line:max-line-length
+	type TypedArray = FloatTypedArray | IntegerTypedArray;
 
 	/**
 	* An integer typed array.
@@ -171,7 +180,7 @@ declare module '@stdlib/types/array' {
 	* const x: IntegerTypedArray = new Uint32Array( 10 );
 	* const y: IntegerTypedArray = new Int32Array( 10 );
 	*/
-	type IntegerTypedArray = Int8Array | Uint8Array | Uint8ClampedArray | Int16Array | Uint16Array | Int32Array | Uint32Array; // tslint:disable-line:max-line-length
+	type IntegerTypedArray = SignedIntegerTypedArray | UnsignedIntegerTypedArray; // tslint:disable-line:max-line-length
 
 	/**
 	* A signed integer typed array.
@@ -520,7 +529,42 @@ declare module '@stdlib/types/ndarray' {
 	/**
 	* Data type.
 	*/
-	type DataType = 'float64' | 'float32' | 'int32' | 'int16' | 'int8' | 'uint32' | 'uint16' | 'uint8' | 'uint8c' | 'complex64' | 'complex128' | 'binary' | 'generic'; // tslint:disable-line:max-line-length
+	type DataType = RealOrComplexDataType | 'binary' | 'generic';
+
+	/**
+	* Data type for real-valued ndarrays.
+	*/
+	type RealDataType = FloatDataType | IntegerDataType;
+
+	/**
+	* Data type for floating-point ndarrays.
+	*/
+	type FloatDataType = 'float64' | 'float32';
+
+	/**
+	* Data type for integer ndarrays.
+	*/
+	type IntegerDataType = SignedIntegerDataType | UnsignedIntegerDataType;
+
+	/**
+	* Data type for signed integer ndarrays.
+	*/
+	type SignedIntegerDataType = 'int32' | 'int16' | 'int8';
+
+	/**
+	* Data type for unsigned integer ndarrays.
+	*/
+	type UnsignedIntegerDataType = 'uint32' | 'uint16' | 'uint8' | 'uint8c';
+
+	/**
+	* Data type for complex number ndarrays.
+	*/
+	type ComplexDataType = 'complex64' | 'complex128';
+
+	/**
+	* Data type for real-valued or complex number ndarrays.
+	*/
+	type RealOrComplexDataType = RealDataType | ComplexDataType;
 
 	/**
 	* Array order.
