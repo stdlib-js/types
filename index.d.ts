@@ -1,3 +1,5 @@
+/* tslint:disable:max-file-line-count */
+
 /*
 * @license Apache-2.0
 *
@@ -126,7 +128,7 @@ declare module '@stdlib/types/array' {
 		* @param i - element index
 		* @returns array element
 		*/
-		get( i: number ): T;
+		get( i: number ): T | void;
 
 		/**
 		* Sets an array element.
@@ -167,11 +169,24 @@ declare module '@stdlib/types/array' {
 	/**
 	* A typed array.
 	*
+	* ## Notes
+	*
+	* -   This is a strict definition of a typed array. Namely, the type is limited to only built-in typed arrays.
+	*
 	* @example
 	* const x: TypedArray = new Float64Array( 10 );
 	* const y: TypedArray = new Uint32Array( 10 );
 	*/
 	type TypedArray = FloatTypedArray | IntegerTypedArray;
+
+	/**
+	* A real-valued typed array.
+	*
+	* @example
+	* const x: RealTypedArray = new Float64Array( 10 );
+	* const y: RealTypedArray = new Uint32Array( 10 );
+	*/
+	type RealTypedArray = TypedArray;
 
 	/**
 	* An integer typed array.
@@ -230,7 +245,7 @@ declare module '@stdlib/types/array' {
 	* @example
 	* const x: RealOrComplexTypedArray = new Float64Array( 10 );
 	*/
-	type RealOrComplexTypedArray = TypedArray | ComplexTypedArray;
+	type RealOrComplexTypedArray = RealTypedArray | ComplexTypedArray;
 
 	/**
 	* A complex number array-like value.
@@ -256,7 +271,7 @@ declare module '@stdlib/types/array' {
 	*     }
 	* };
 	*/
-	interface ComplexArrayLike {
+	interface ComplexArrayLike extends AccessorArrayLike<ComplexLike> {
 		/**
 		* Length (in bytes) of the array.
 		*/
@@ -464,6 +479,70 @@ declare module '@stdlib/types/iter' {
 		*/
 		done: boolean;
 	}
+
+	/**
+	* Interface describing an iterator protocol-compliant object.
+	*
+	* @example
+	* const it: TypedIterator<number> = {
+	*     'next': () => { return { 'value': 0, 'done': false }; }
+	* };
+	*/
+	interface TypedIterator<T> {
+		/**
+		* Returns an iterator protocol-compliant object containing the next iterated value (if one exists) and a boolean flag indicating whether the iterator is finished.
+		*
+		* @returns iterator protocol-compliant object
+		*/
+		next(): TypedIteratorResult<T>;
+
+		/**
+		* Finishes an iterator.
+		*
+		* @param value - value to return
+		* @returns iterator protocol-compliant object
+		*/
+		return?( value?: T ): TypedIteratorResult<T>;
+	}
+
+	/**
+	* Interface describing an iterable iterator protocol-compliant object.
+	*
+	* @example
+	* const it: IterableIterator = {
+	*     'next': () => { return { 'value': 0, 'done': false }; },
+	*     [Symbol.iterator]: () => { return this; }
+	* };
+	*/
+	interface TypedIterableIterator<T> extends TypedIterator<T> {
+		/**
+		* Returns a new iterable iterator.
+		*
+		* @returns iterable iterator
+		*/
+		[Symbol.iterator](): TypedIterableIterator<T>;
+	}
+
+	/**
+	* Interface describing an iterator protocol-compliant results object.
+	*
+	* @example
+	* const o: TypedIteratorResult<number> = {
+	*     'value': 3.14,
+	*     'done': false
+	* };
+	*/
+	interface TypedIteratorResult<T> {
+		/**
+		* Iterated value (if one exists).
+		*/
+		value?: T;
+
+		/**
+		* Boolean flag indicating whether an iterator is finished.
+		*/
+		done: boolean;
+	}
 }
 
 /**
@@ -524,7 +603,8 @@ declare module '@stdlib/types/iter' {
 * };
 */
 declare module '@stdlib/types/ndarray' {
-	import { ArrayLike } from '@stdlib/types/array';
+	import { ArrayLike, Complex128Array, Complex64Array, RealOrComplexTypedArray, RealTypedArray, ComplexTypedArray, IntegerTypedArray, FloatTypedArray, SignedIntegerTypedArray, UnsignedIntegerTypedArray } from '@stdlib/types/array'; // tslint:disable-line:max-line-length
+	import { ComplexLike, Complex128, Complex64 } from '@stdlib/types/object';
 
 	/**
 	* Data type.
@@ -587,6 +667,24 @@ declare module '@stdlib/types/ndarray' {
 	*     -   `clamp`: specifies that a function should set an index less than zero to zero (minimum index) and set an index greater than a maximum index value to the maximum possible index.
 	*/
 	type Mode = 'throw' | 'clamp' | 'wrap';
+
+	/**
+	* Array shape.
+	*
+	* ## Notes
+	*
+	* -   Each element of the array shape (i.e., dimension size) should be a nonnegative integer.
+	*/
+	type Shape = ArrayLike<number>;
+
+	/**
+	* Array strides.
+	*
+	* ## Notes
+	*
+	* -   Each stride (i.e., index increment along a respective dimension) should be an integer.
+	*/
+	type Strides = ArrayLike<number>;
 
 	/**
 	* Interface describing an ndarray.
@@ -679,12 +777,12 @@ declare module '@stdlib/types/ndarray' {
 		/**
 		* Array shape.
 		*/
-		shape: ArrayLike<number>;
+		shape: Shape;
 
 		/**
 		* Array strides.
 		*/
-		strides: ArrayLike<number>;
+		strides: Strides;
 
 		/**
 		* Returns an array element specified according to provided subscripts.
@@ -709,6 +807,1365 @@ declare module '@stdlib/types/ndarray' {
 		* @returns ndarray instance
 		*/
 		set( ...args: Array<any> ): ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a generic data type.
+	*
+	* @example
+	* const arr: genericndarray = {
+	*     'byteLength': null,
+	*     'BYTES_PER_ELEMENT': null,
+	*     'data': [ 1, 2, 3 ],
+	*     'dtype': 'generic',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface genericndarray extends ndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: null;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: null;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'generic';
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: ArrayLike<any>;
+
+		/**
+		* Returns an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts
+		* @returns array element
+		*/
+		get( ...args: Array<number> ): any;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<any> ): genericndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a homogeneous data type.
+	*
+	* @example
+	* const arr: typedndarray<number> = {
+	*     'byteLength': null,
+	*     'BYTES_PER_ELEMENT': null,
+	*     'data': [ 1, 2, 3 ],
+	*     'dtype': 'generic',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface typedndarray<T> extends ndarray { // tslint:disable-line:class-name
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: ArrayLike<T>;
+
+		/**
+		* Returns an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts
+		* @returns array element
+		*/
+		get( ...args: Array<number> ): T;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number | T> ): typedndarray<T>;
+	}
+
+	/**
+	* Interface describing an ndarray having a floating-point data type.
+	*
+	* @example
+	* const arr: floatndarray = {
+	*     'byteLength': 24,
+	*     'BYTES_PER_ELEMENT': 8,
+	*     'data': new Float64Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'float64',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface floatndarray extends typedndarray<number> { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: number;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: number;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: FloatTypedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: FloatDataType;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): floatndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a double-precision floating-point data type.
+	*
+	* @example
+	* const arr: float64ndarray = {
+	*     'byteLength': 24,
+	*     'BYTES_PER_ELEMENT': 8,
+	*     'data': new Float64Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'float64',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface float64ndarray extends floatndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 8;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Float64Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'float64';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): float64ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a single-precision floating-point data type.
+	*
+	* @example
+	* const arr: float32ndarray = {
+	*     'byteLength': 12,
+	*     'BYTES_PER_ELEMENT': 4,
+	*     'data': new Float32Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'float32',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface float32ndarray extends floatndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 4;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Float32Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'float32';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): float32ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having an integer data type.
+	*
+	* @example
+	* const arr: integerndarray = {
+	*     'byteLength': 12,
+	*     'BYTES_PER_ELEMENT': 4,
+	*     'data': new Int32Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'int32',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface integerndarray extends typedndarray<number> { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: number;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: number;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: IntegerTypedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: IntegerDataType;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): integerndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a signed integer data type.
+	*
+	* @example
+	* const arr: signedintegerndarray = {
+	*     'byteLength': 12,
+	*     'BYTES_PER_ELEMENT': 4,
+	*     'data': new Int32Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'int32',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface signedintegerndarray extends typedndarray<number> { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: number;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: number;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: SignedIntegerTypedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: SignedIntegerDataType;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): signedintegerndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a signed 32-bit integer data type.
+	*
+	* @example
+	* const arr: int32ndarray = {
+	*     'byteLength': 12,
+	*     'BYTES_PER_ELEMENT': 4,
+	*     'data': new Int32Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'int32',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface int32ndarray extends signedintegerndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 4;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Int32Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'int32';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): int32ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a signed 16-bit integer data type.
+	*
+	* @example
+	* const arr: int16ndarray = {
+	*     'byteLength': 6,
+	*     'BYTES_PER_ELEMENT': 2,
+	*     'data': new Int16Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'int16',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface int16ndarray extends signedintegerndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 2;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Int16Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'int16';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): int16ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a signed 8-bit integer data type.
+	*
+	* @example
+	* const arr: int8ndarray = {
+	*     'byteLength': 3,
+	*     'BYTES_PER_ELEMENT': 1,
+	*     'data': new Int8Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'int8',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface int8ndarray extends signedintegerndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 1;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Int8Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'int8';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): int8ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having an unsigned integer data type.
+	*
+	* @example
+	* const arr: unsignedintegerndarray = {
+	*     'byteLength': 12,
+	*     'BYTES_PER_ELEMENT': 4,
+	*     'data': new Uint32Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'uint32',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface unsignedintegerndarray extends typedndarray<number> { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: number;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: number;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: UnsignedIntegerTypedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: UnsignedIntegerDataType;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): unsignedintegerndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having an unsigned 32-bit integer data type.
+	*
+	* @example
+	* const arr: uint32ndarray = {
+	*     'byteLength': 12,
+	*     'BYTES_PER_ELEMENT': 4,
+	*     'data': new Uint32Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'uint32',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface uint32ndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 4;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Uint32Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'uint32';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): uint32ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having an unsigned 16-bit integer data type.
+	*
+	* @example
+	* const arr: uint16ndarray = {
+	*     'byteLength': 6,
+	*     'BYTES_PER_ELEMENT': 2,
+	*     'data': new Uint16Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'uint16',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface uint16ndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 2;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Uint16Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'uint16';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): uint16ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having an unsigned 8-bit integer data type.
+	*
+	* @example
+	* const arr: uint8ndarray = {
+	*     'byteLength': 3,
+	*     'BYTES_PER_ELEMENT': 1,
+	*     'data': new Uint8Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'uint8',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface uint8ndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 1;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Uint8Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'uint8';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): uint8ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a clamped unsigned 8-bit integer data type.
+	*
+	* @example
+	* const arr: uint8cndarray = {
+	*     'byteLength': 12,
+	*     'BYTES_PER_ELEMENT': 4,
+	*     'data': new Uint8ClampedArray( [ 1, 2, 3 ] ),
+	*     'dtype': 'uint8c',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface uint8cndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 1;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Uint8ClampedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'uint8c';
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): uint8cndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a real-valued data type.
+	*
+	* @example
+	* const arr: realndarray = {
+	*     'byteLength': 24,
+	*     'BYTES_PER_ELEMENT': 8,
+	*     'data': new Float64Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'float64',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface realndarray extends typedndarray<number> { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: number;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: number;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: RealTypedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: RealDataType;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number> ): realndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a real or complex number data type.
+	*
+	* @example
+	* const arr: realcomplexndarray = {
+	*     'byteLength': 24,
+	*     'BYTES_PER_ELEMENT': 8,
+	*     'data': new Float64Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'float64',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface realcomplexndarray extends ndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: number;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: number;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: RealOrComplexTypedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: RealOrComplexDataType;
+
+		/**
+		* Returns an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts
+		* @returns array element
+		*/
+		get( ...args: Array<number> ): number | ComplexLike | void;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number | ComplexLike> ): realcomplexndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a complex number data type.
+	*
+	* @example
+	* const arr: complexndarray = {
+	*     'byteLength': 48,
+	*     'BYTES_PER_ELEMENT': 16,
+	*     'data': new Float64Array( [ 1, 2, 3, 4, 5, 6 ] ),
+	*     'dtype': 'complex128',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return new Complex128( this.data[ i*2 ], this.data[ (i*2)+1 ] );
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface complexndarray extends ndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of the array.
+		*/
+		byteLength: number;
+
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: number;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: ComplexTypedArray;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: ComplexDataType;
+
+		/**
+		* Returns an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts
+		* @returns array element
+		*/
+		get( ...args: Array<number> ): ComplexLike | void;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number | ComplexLike> ): complexndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a double-precision complex floating-point data type.
+	*
+	* @example
+	* const arr: complex128ndarray = {
+	*     'byteLength': 48,
+	*     'BYTES_PER_ELEMENT': 16,
+	*     'data': new Float64Array( [ 1, 2, 3, 4, 5, 6 ] ),
+	*     'dtype': 'complex128',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return new Complex128( this.data[ i*2 ], this.data[ (i*2)+1 ] );
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface complex128ndarray extends complexndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 16;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Complex128Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'complex128';
+
+		/**
+		* Returns an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts
+		* @returns array element
+		*/
+		get( ...args: Array<number> ): Complex128 | void;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number | ComplexLike> ): complex128ndarray;
+	}
+
+	/**
+	* Interface describing an ndarray having a single-precision complex floating-point data type.
+	*
+	* @example
+	* const arr: complex64ndarray = {
+	*     'byteLength': 24,
+	*     'BYTES_PER_ELEMENT': 8,
+	*     'data': new Float32Array( [ 1, 2, 3, 4, 5, 6 ] ),
+	*     'dtype': 'complex64',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return new Complex64( this.data[ i*2 ], this.data[ (i*2)+1 ] );
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface complex64ndarray extends complexndarray { // tslint:disable-line:class-name
+		/**
+		* Size (in bytes) of each array element.
+		*/
+		BYTES_PER_ELEMENT: 8;
+
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: Complex64Array;
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: 'complex64';
+
+		/**
+		* Returns an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts
+		* @returns array element
+		*/
+		get( ...args: Array<number> ): Complex64 | void;
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param args - subscripts and value to set
+		* @returns ndarray instance
+		*/
+		set( ...args: Array<number | ComplexLike> ): complex64ndarray;
+	}
+
+	/**
+	* Interface describing a one-dimensional ndarray having a homogeneous data type.
+	*
+	* @example
+	* const arr: Vector<number> = {
+	*     'byteLength': 24,
+	*     'BYTES_PER_ELEMENT': 8,
+	*     'data': new Float64Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'float64',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 1,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface Vector<T> extends typedndarray<T> {
+		/**
+		* Number of dimensions.
+		*/
+		ndims: 1;
+
+		/**
+		* Array shape.
+		*/
+		shape: [ number ]; // tslint:disable-line:no-single-element-tuple-type
+
+		/**
+		* Array strides.
+		*/
+		strides: [ number ]; // tslint:disable-line:no-single-element-tuple-type
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param i - element index
+		* @param value - value to set
+		* @returns ndarray instance
+		*/
+		set( i: number, value: T ): Vector<T>;
+	}
+
+	/**
+	* Interface describing a two-dimensional ndarray having a homogeneous data type.
+	*
+	* @example
+	* const arr: Matrix<number> = {
+	*     'byteLength': 24,
+	*     'BYTES_PER_ELEMENT': 8,
+	*     'data': new Float64Array( [ 1, 2, 3 ] ),
+	*     'dtype': 'float64',
+	*     'flags': {
+	*         'ROW_MAJOR_CONTIGUOUS': true,
+	*         'COLUMN_MAJOR_CONTIGUOUS': false
+	*     },
+	*     'length': 3,
+	*     'ndims': 2,
+	*     'offset': 0,
+	*     'order': 'row-major',
+	*     'shape': [ 1, 3 ],
+	*     'strides': [ 3, 1 ],
+	*     'get': function get( i ) {
+	*         return this.data[ i ];
+	*     },
+	*     'set': function set( i, v ) {
+	*         this.data[ i ] = v;
+	*         return this;
+	*     }
+	* };
+	*/
+	interface Matrix<T> extends typedndarray<T> {
+		/**
+		* Number of dimensions.
+		*/
+		ndims: 2;
+
+		/**
+		* Array shape.
+		*/
+		shape: [ number, number ];
+
+		/**
+		* Array strides.
+		*/
+		strides: [ number, number ];
+
+		/**
+		* Sets an array element specified according to provided subscripts.
+		*
+		* ## Notes
+		*
+		* -   The number of provided subscripts should equal the number of dimensions.
+		*
+		* @param i - index along first dimension
+		* @param j - index along second dimension
+		* @param value - value to set
+		* @returns ndarray instance
+		*/
+		set( i: number, j: number, value: T ): Matrix<T>;
 	}
 }
 
