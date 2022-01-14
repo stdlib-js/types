@@ -113,14 +113,14 @@ declare module '@stdlib/types/array' {
 	*/
 	interface AccessorArrayLike<T> {
 		/**
-		* Number of elements.
-		*/
-		length: number;
-
-		/**
 		* Properties.
 		*/
 		[key: string]: any;
+
+		/**
+		* Number of elements.
+		*/
+		length: number;
 
 		/**
 		* Returns an array element.
@@ -603,7 +603,7 @@ declare module '@stdlib/types/iter' {
 * };
 */
 declare module '@stdlib/types/ndarray' {
-	import { ArrayLike, Complex128Array, Complex64Array, RealOrComplexTypedArray, RealTypedArray, ComplexTypedArray, IntegerTypedArray, FloatTypedArray, SignedIntegerTypedArray, UnsignedIntegerTypedArray } from '@stdlib/types/array'; // tslint:disable-line:max-line-length
+	import { ArrayLike, AccessorArrayLike, Complex128Array, Complex64Array, RealOrComplexTypedArray, RealTypedArray, ComplexTypedArray, IntegerTypedArray, FloatTypedArray, SignedIntegerTypedArray, UnsignedIntegerTypedArray } from '@stdlib/types/array'; // tslint:disable-line:max-line-length
 	import { ComplexLike, Complex128, Complex64 } from '@stdlib/types/object';
 
 	/**
@@ -728,7 +728,7 @@ declare module '@stdlib/types/ndarray' {
 		/**
 		* A reference to the underlying data buffer.
 		*/
-		data: ArrayLike<any>;
+		data: ArrayLike<any> | AccessorArrayLike<any>;
 
 		/**
 		* Underlying data type.
@@ -1846,7 +1846,7 @@ declare module '@stdlib/types/ndarray' {
 	* const arr: complexndarray = {
 	*     'byteLength': 48,
 	*     'BYTES_PER_ELEMENT': 16,
-	*     'data': new Float64Array( [ 1, 2, 3, 4, 5, 6 ] ),
+	*     'data': new Complex128Array( [ 1, 2, 3, 4, 5, 6 ] ),
 	*     'dtype': 'complex128',
 	*     'flags': {
 	*         'ROW_MAJOR_CONTIGUOUS': true,
@@ -1920,7 +1920,7 @@ declare module '@stdlib/types/ndarray' {
 	* const arr: complex128ndarray = {
 	*     'byteLength': 48,
 	*     'BYTES_PER_ELEMENT': 16,
-	*     'data': new Float64Array( [ 1, 2, 3, 4, 5, 6 ] ),
+	*     'data': new Complex128Array( [ 1, 2, 3, 4, 5, 6 ] ),
 	*     'dtype': 'complex128',
 	*     'flags': {
 	*         'ROW_MAJOR_CONTIGUOUS': true,
@@ -1989,7 +1989,7 @@ declare module '@stdlib/types/ndarray' {
 	* const arr: complex64ndarray = {
 	*     'byteLength': 24,
 	*     'BYTES_PER_ELEMENT': 8,
-	*     'data': new Float32Array( [ 1, 2, 3, 4, 5, 6 ] ),
+	*     'data': new Complex64Array( [ 1, 2, 3, 4, 5, 6 ] ),
 	*     'dtype': 'complex64',
 	*     'flags': {
 	*         'ROW_MAJOR_CONTIGUOUS': true,
