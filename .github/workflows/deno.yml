@@ -39,7 +39,7 @@ jobs:
         run: |
           TAG_NAME="v0.0.1"
           echo "::set-output name=tag_name::${TAG_NAME}"
-          echo "::set-output name=deploy_tag_name::deno-${TAG_NAME}"
+          echo "::set-output name=publish_tag_name::deno-${TAG_NAME}"
       - name: Publish to deno branch
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -49,3 +49,5 @@ jobs:
           keep_files: true
           user_name: 'stdlib-bot'
           user_email: 'noreply@stdlib.io'
+          tag_name: ${{ steps.prepare_tag.outputs.publish_tag_name }}
+          tag_message: 'Release ${{ steps.prepare_tag.outputs.tag_name }}'
