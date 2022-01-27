@@ -27,7 +27,6 @@ on:
 jobs:
   publish-deno:
     runs-on: ubuntu-latest
-    env:
     steps:
       - uses: actions/checkout@v2
       - name: Copy files to deno directory
