@@ -36,7 +36,6 @@ jobs:
           cp README.md LICENSE CONTRIBUTORS NOTICE index.d.ts deno
       - name: Prepare tag
         id: prepare_tag
-        if: startsWith(github.ref, 'refs/tags/')
         run: |
           TAG_NAME="v0.0.1"
           echo "::set-output name=tag_name::${TAG_NAME}"
