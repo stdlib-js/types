@@ -36,7 +36,7 @@ jobs:
       - name: Rewrite README.md file
         run: |
           # Replace internal package links with deno.land links:
-          find ./deno/README.md -print0 | xargs -0 sed -Ei "/^\[@stdlib[^:]+: https:\/\/github.com\/stdlib-js\// {
+          find ./deno -type f -name '*.md' -print0 | xargs -0 sed -Ei "/^\[@stdlib[^:]+: https:\/\/github.com\/stdlib-js\// {
               h
               s/:.*/: https:\/\/deno.land\/x\/stdlib_/
               x
@@ -48,17 +48,17 @@ jobs:
           }"
 
           # Change wording of project description to avoid reference to JavaScript and Node.js:
-          find ./deno/README.md -print0 | xargs -0 sed -Ei "s/a standard library for JavaScript and Node.js, /a standard library /g"
+          find ./deno -type f -name \'*.md\' -print0 | xargs -0 sed -Ei "s/a standard library for JavaScript and Node.js, /a standard library /g"
 
           # Remove `installation`, `cli`, and `c` sections:
-          find ./deno/README.md -print0 | xargs -0 perl -0777 -i -pe "s/<section class=\"installation\">[^<]+<\/section>//g"
-          find ./deno/README.md -print0 | xargs -0 perl -0777 -i -pe "s/<section class=\"cli\">[^<]+<\/section>\n\n<!-- \/.cli -->//g"
-          find ./deno/README.md -print0 | xargs -0 perl -0777 -i -pe "s/<section class=\"c\">[^<]+<\/section>\n\n<!-- \/.c -->//g"
+          find ./deno -type f -name '*.md' -print0 | xargs -0 perl -0777 -i -pe "s/<section class=\"installation\">[^<]+<\/section>//g;"
+          find ./deno -type f -name '*.md' -print0 | xargs -0 perl -0777 -i -pe "s/<section class=\"cli\">[\s\S]+<\!\-\- \/.cli \-\->//g"
+          find ./deno -type f -name '*.md' -print0 | xargs -0 perl -0777 -i -pe "s/<section class=\"c\">[\s\S]+<\!\-\- \/.c \-\->//g"
 
       - name: Prepare tag
         id: prepare_tag
         run: |
-          TAG_NAME="v0.0.2"
+          TAG_NAME="v0.0.3"
           echo "::set-output name=tag_name::${TAG_NAME}"
           echo "::set-output name=publish_tag_name::deno-${TAG_NAME}"
       - name: Publish to deno branch
@@ -72,4 +72,5 @@ jobs:
           user_email: 'noreply@stdlib.io'
           tag_name: ${{ steps.prepare_tag.outputs.publish_tag_name }}
           tag_message: 'Release ${{ steps.prepare_tag.outputs.tag_name }}'
+          commit_message: ${{ steps.prepare_tag.outputs.tag_name }}
           enable_jekyll: true
