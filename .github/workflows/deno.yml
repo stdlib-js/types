@@ -47,8 +47,19 @@ jobs:
               s/\n//
           }"
 
+          # Replace reference to `@stdlib/types` with deno.land link:
+          find ./deno -type f -name '*.ts' -print0 | xargs -0 sed -Ei "s/\/\/\/ <reference types=\"@stdlib\/types\"\/>/\/\/\/ <reference types=\"https:\/\/deno.land\/x\/stdlib_types\/index.d.ts\"\/>/g"
+
           # Change wording of project description to avoid reference to JavaScript and Node.js:
-          find ./deno -type f -name \'*.md\' -print0 | xargs -0 sed -Ei "s/a standard library for JavaScript and Node.js, /a standard library /g"
+          find ./deno -type f -name '*.md' -print0 | xargs -0 sed -Ei "s/a standard library for JavaScript and Node.js, /a standard library /g"
+
+          # Rewrite all `require()`s to use deno.land links:
+          find ./deno -type f -name '*.md' -print0 | xargs -0 sed -Ei "/require\( '@stdlib\// {
+              s/(var|let|const)\s+([^\s]+)\s+=\s*require\( '([^']+)' \);/import \2 from \'\3\';/
+              s/[\/-]/_/g
+              s/@stdlib/https:\/\/deno.land\/x\/stdlib/
+              s/';/\/mod.js';/
+          }"
 
           # Remove `installation`, `cli`, and `c` sections:
           find ./deno -type f -name '*.md' -print0 | xargs -0 perl -0777 -i -pe "s/<section class=\"installation\">[^<]+<\/section>//g;"
