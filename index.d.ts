@@ -1,5 +1,3 @@
-/* tslint:disable:max-file-line-count */
-
 /*
 * @license Apache-2.0
 *
@@ -18,6 +16,8 @@
 * limitations under the License.
 */
 
+/* eslint-disable max-lines */
+
 // TypeScript Version: 4.1
 
 /**
@@ -35,7 +35,6 @@
 */
 declare module '@stdlib/types/array' {
 	import { ComplexLike, Complex64, Complex128 } from '@stdlib/types/complex';
-	import { Override } from '@stdlib/types/utilities';
 
 	/**
 	* Data type.
@@ -121,7 +120,7 @@ declare module '@stdlib/types/array' {
 		/**
 		* Properties.
 		*/
-		[key: string]: any;
+		[key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 		/**
 		* Number of elements.
@@ -277,7 +276,7 @@ declare module '@stdlib/types/array' {
 	* const x: AnyArray = [ 1, 2, 3 ];
 	* const y: AnyArray = new Float64Array( 10 );
 	*/
-	type AnyArray = Array<any> | RealOrComplexTypedArray;
+	type AnyArray = Array<any> | RealOrComplexTypedArray; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 	/**
 	* An array or typed array.
@@ -286,7 +285,7 @@ declare module '@stdlib/types/array' {
 	* const x: ArrayOrTypedArray = [ 1, 2, 3 ];
 	* const y: ArrayOrTypedArray = new Float64Array( 10 );
 	*/
-	type ArrayOrTypedArray = Array<any> | TypedArray;
+	type ArrayOrTypedArray = Array<any> | TypedArray; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 	/**
 	* A typed array.
@@ -533,7 +532,7 @@ declare module '@stdlib/types/array' {
 	* @example
 	* const x: Collection<number> = [ 1, 2, 3 ];
 	*/
-	type Collection<T = any> = Array<T> | TypedArray | ArrayLike<T>;
+	type Collection<T = any> = Array<T> | TypedArray | ArrayLike<T>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 /**
@@ -576,7 +575,7 @@ declare module '@stdlib/types/iter' {
 		* @param value - value to return
 		* @returns iterator protocol-compliant object
 		*/
-		return?( value?: any ): IteratorResult;
+		return?( value?: any ): IteratorResult; // eslint-disable-line @typescript-eslint/no-explicit-any
 	}
 
 	/**
@@ -610,7 +609,7 @@ declare module '@stdlib/types/iter' {
 		/**
 		* Iterated value (if one exists).
 		*/
-		value?: any;
+		value?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 		/**
 		* Boolean flag indicating whether an iterator is finished.
@@ -742,7 +741,7 @@ declare module '@stdlib/types/iter' {
 */
 declare module '@stdlib/types/ndarray' {
 	import { ArrayLike, AccessorArrayLike, Collection, Complex128Array, Complex64Array, RealOrComplexTypedArray, FloatOrComplexTypedArray, RealTypedArray, ComplexTypedArray, IntegerTypedArray, FloatTypedArray, SignedIntegerTypedArray, UnsignedIntegerTypedArray } from '@stdlib/types/array';
-	import { ComplexLike, Complex128, Complex64 } from '@stdlib/types/complex';
+	import { ComplexLike, Complex128, Complex64 } from '@stdlib/types/complex'; // eslint-disable-line no-duplicate-imports
 
 	/**
 	* Data type.
@@ -810,11 +809,12 @@ declare module '@stdlib/types/ndarray' {
 	*
 	* -   The following index modes are supported:
 	*
-	*     -   `throw`: specifies that a function should throw an error when an index is outside a restricted interval.
-	*     -   `wrap`: specifies that a function should wrap around an index using modulo arithmetic.
-	*     -   `clamp`: specifies that a function should set an index less than zero to zero (minimum index) and set an index greater than a maximum index value to the maximum possible index.
+	*     -   **throw**: specifies that a function should throw an error when an index is outside a restricted interval.
+	*     -   **normalize**: specifies that a function should normalize negative indices and throw an error when an index is outside a restricted interval.
+	*     -   **wrap**: specifies that a function should wrap around an index using modulo arithmetic.
+	*     -   **clamp**: specifies that a function should set an index less than zero to zero (minimum index) and set an index greater than a maximum index value to the maximum possible index.
 	*/
-	type Mode = 'throw' | 'clamp' | 'wrap';
+	type Mode = 'throw' | 'normalize' | 'clamp' | 'wrap';
 
 	/**
 	* Array shape.
@@ -1060,7 +1060,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface ndarray { // tslint:disable-line:class-name
+	interface ndarray {
 		/**
 		* Size (in bytes) of the array (if known).
 		*/
@@ -1074,7 +1074,7 @@ declare module '@stdlib/types/ndarray' {
 		/**
 		* A reference to the underlying data buffer.
 		*/
-		data: ArrayLike<any> | AccessorArrayLike<any>;
+		data: ArrayLike<any> | AccessorArrayLike<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 		/**
 		* Underlying data type.
@@ -1145,7 +1145,7 @@ declare module '@stdlib/types/ndarray' {
 		* @param args - subscripts
 		* @returns array element
 		*/
-		get( ...args: Array<number> ): any;
+		get( ...args: Array<number> ): any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 		/**
 		* Sets an array element specified according to provided subscripts.
@@ -1157,7 +1157,7 @@ declare module '@stdlib/types/ndarray' {
 		* @param args - subscripts and value to set
 		* @returns ndarray instance
 		*/
-		set( ...args: Array<any> ): ndarray;
+		set( ...args: Array<any> ): ndarray; // eslint-disable-line @typescript-eslint/no-explicit-any
 	}
 
 	/**
@@ -1188,7 +1188,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface genericndarray<T> extends ndarray { // tslint:disable-line:class-name
+	interface genericndarray<T> extends ndarray {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -1262,7 +1262,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface typedndarray<T> extends ndarray { // tslint:disable-line:class-name
+	interface typedndarray<T> extends ndarray {
 		/**
 		* A reference to the underlying data buffer.
 		*/
@@ -1321,7 +1321,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface floatndarray extends typedndarray<number> { // tslint:disable-line:class-name
+	interface floatndarray extends typedndarray<number> {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -1383,7 +1383,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface float64ndarray extends floatndarray { // tslint:disable-line:class-name
+	interface float64ndarray extends floatndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -1440,7 +1440,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface float32ndarray extends floatndarray { // tslint:disable-line:class-name
+	interface float32ndarray extends floatndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -1497,7 +1497,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface integerndarray extends typedndarray<number> { // tslint:disable-line:class-name
+	interface integerndarray extends typedndarray<number> {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -1559,7 +1559,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface signedintegerndarray extends typedndarray<number> { // tslint:disable-line:class-name
+	interface signedintegerndarray extends typedndarray<number> {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -1621,7 +1621,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface int32ndarray extends signedintegerndarray { // tslint:disable-line:class-name
+	interface int32ndarray extends signedintegerndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -1678,7 +1678,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface int16ndarray extends signedintegerndarray { // tslint:disable-line:class-name
+	interface int16ndarray extends signedintegerndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -1735,7 +1735,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface int8ndarray extends signedintegerndarray { // tslint:disable-line:class-name
+	interface int8ndarray extends signedintegerndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -1792,7 +1792,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface unsignedintegerndarray extends typedndarray<number> { // tslint:disable-line:class-name
+	interface unsignedintegerndarray extends typedndarray<number> {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -1854,7 +1854,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface uint32ndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+	interface uint32ndarray extends unsignedintegerndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -1911,7 +1911,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface uint16ndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+	interface uint16ndarray extends unsignedintegerndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -1968,7 +1968,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface uint8ndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+	interface uint8ndarray extends unsignedintegerndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -2025,7 +2025,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface uint8cndarray extends unsignedintegerndarray { // tslint:disable-line:class-name
+	interface uint8cndarray extends unsignedintegerndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -2082,7 +2082,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface realndarray extends typedndarray<number> { // tslint:disable-line:class-name
+	interface realndarray extends typedndarray<number> {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -2144,7 +2144,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface realcomplexndarray extends ndarray { // tslint:disable-line:class-name
+	interface realcomplexndarray extends ndarray {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -2218,7 +2218,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface floatcomplexndarray extends ndarray { // tslint:disable-line:class-name
+	interface floatcomplexndarray extends ndarray {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -2292,7 +2292,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface complexndarray extends ndarray { // tslint:disable-line:class-name
+	interface complexndarray extends ndarray {
 		/**
 		* Size (in bytes) of the array.
 		*/
@@ -2366,7 +2366,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface complex128ndarray extends complexndarray { // tslint:disable-line:class-name
+	interface complex128ndarray extends complexndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -2435,7 +2435,7 @@ declare module '@stdlib/types/ndarray' {
 	*     }
 	* };
 	*/
-	interface complex64ndarray extends complexndarray { // tslint:disable-line:class-name
+	interface complex64ndarray extends complexndarray {
 		/**
 		* Size (in bytes) of each array element.
 		*/
@@ -2513,12 +2513,12 @@ declare module '@stdlib/types/ndarray' {
 		/**
 		* Array shape.
 		*/
-		shape: [ number ]; // tslint:disable-line:no-single-element-tuple-type
+		shape: [ number ];
 
 		/**
 		* Array strides.
 		*/
-		strides: [ number ]; // tslint:disable-line:no-single-element-tuple-type
+		strides: [ number ];
 
 		/**
 		* Sets an array element specified according to provided subscripts.
@@ -2618,8 +2618,6 @@ declare module '@stdlib/types/ndarray' {
 * };
 */
 declare module '@stdlib/types/object' {
-	import { ArrayLike, TypedArray } from '@stdlib/types/array';
-
 	/**
 	* Interface describing a data property descriptor object.
 	*
@@ -2812,7 +2810,7 @@ declare module '@stdlib/types/complex' {
 * const rand: PRNG = () => 3.14;
 */
 declare module '@stdlib/types/random' {
-	import { ArrayLike } from '@stdlib/types/array';
+	import { ArrayLike } from '@stdlib/types/array'; // eslint-disable-line no-duplicate-imports
 
 	/**
 	* A pseudorandom number generator (PRNG).
@@ -2886,7 +2884,7 @@ declare module '@stdlib/types/utilities' {
 * const s: slice.Slice = { 'start': 0, 'stop': 10, 'step': 1 };
 */
 declare module '@stdlib/types/slice' {
-	import { ArrayLike } from '@stdlib/types/array';
+	import { ArrayLike } from '@stdlib/types/array'; // eslint-disable-line no-duplicate-imports
 
 	/**
 	* A slice object.
