@@ -10,6 +10,7 @@
 
 ### Features
 
+-   [`4bdd095`](https://github.com/stdlib-js/stdlib/commit/4bdd09568cf3d39d09c82aa19b5f4e271cce4af3) - add `booleanndarray` and `boolndarray` type definitions
 -   [`16e0808`](https://github.com/stdlib-js/stdlib/commit/16e0808004b7bd4f16eea7eced5229ee1120b577) - add boolean dtype support to `ndarray/dtypes` [(#2550)](https://github.com/stdlib-js/stdlib/pull/2550)
 -   [`62744b5`](https://github.com/stdlib-js/stdlib/commit/62744b5bd1fc7a9502d527be5ff3239f0491e05c) - add `blas/base/ssymv` [(#2305)](https://github.com/stdlib-js/stdlib/pull/2305)
 -   [`c8ed312`](https://github.com/stdlib-js/stdlib/commit/c8ed31299777aa990960a022e3f6ea161ac7ff76) - add boolean array types
@@ -25,6 +26,7 @@
 
 <details>
 
+-   [`4bdd095`](https://github.com/stdlib-js/stdlib/commit/4bdd09568cf3d39d09c82aa19b5f4e271cce4af3) - **feat:** add `booleanndarray` and `boolndarray` type definitions _(by Athan Reines)_
 -   [`16e0808`](https://github.com/stdlib-js/stdlib/commit/16e0808004b7bd4f16eea7eced5229ee1120b577) - **feat:** add boolean dtype support to `ndarray/dtypes` [(#2550)](https://github.com/stdlib-js/stdlib/pull/2550) _(by Jaysukh Makvana, Athan Reines)_
 -   [`62744b5`](https://github.com/stdlib-js/stdlib/commit/62744b5bd1fc7a9502d527be5ff3239f0491e05c) - **feat:** add `blas/base/ssymv` [(#2305)](https://github.com/stdlib-js/stdlib/pull/2305) _(by Aman Bhansali, Athan Reines)_
 -   [`c8ed312`](https://github.com/stdlib-js/stdlib/commit/c8ed31299777aa990960a022e3f6ea161ac7ff76) - **feat:** add boolean array types _(by Athan Reines)_
