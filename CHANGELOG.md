@@ -2,9 +2,9 @@
 
 > Package changelog.
 
-<section class="release" id="unreleased">
+<section class="release" id="v0.4.0">
 
-## Unreleased (2024-08-03)
+## 0.4.0 (2024-08-17)
 
 <section class="features">
 
@@ -25,8 +25,7 @@
 
 ### BREAKING CHANGES
 
--   [`2254a56`](https://github.com/stdlib-js/stdlib/commit/2254a5616945ee973f080c6d35f19e51778e24ee): add `blas/base/strmv`
--   [`2254a56`](https://github.com/stdlib-js/stdlib/commit/2254a5616945ee973f080c6d35f19e51778e24ee): rename `none` transpose operation to `no-transpose` in `@stdlib/types` 
+-   [`2254a56`](https://github.com/stdlib-js/stdlib/commit/2254a5616945ee973f080c6d35f19e51778e24ee): rename `none` transpose operation to `no-transpose` in `@stdlib/types`
 
     -   To migrate, users should change their usage of `none` to `no-transpose`. This change enhances code readability and aligns the string literal with the C enumeration constant.
 
@@ -168,12 +167,11 @@ No changes reported for this release.
 ### BREAKING CHANGES
 
 -   [`e25b23b`](https://github.com/stdlib-js/stdlib/commit/e25b23b917ee6e387722db7192d22e4a70222da0): rename type definitions for array and ndarray data types
--   [`e25b23b`](https://github.com/stdlib-js/stdlib/commit/e25b23b917ee6e387722db7192d22e4a70222da0): rename type definitions for array and ndarray data types 
 
     -   In order to migrate, users should update their implementations to
-    use the latest naming conventions. The affected type definitions
-    are aliases for individual data type strings, so their should be
-    no behavioral changes.
+        use the latest naming conventions. The affected type definitions
+        are aliases for individual data type strings, so their should be
+        no behavioral changes.
 
 </section>
 
@@ -264,32 +262,28 @@ No changes reported for this release.
 ### BREAKING CHANGES
 
 -   [`bde4671`](https://github.com/stdlib-js/stdlib/commit/bde4671201dfa6b510f88bcb60d455f44c0842e1): move `Collection` type defn to array type module
--   [`bde4671`](https://github.com/stdlib-js/stdlib/commit/bde4671201dfa6b510f88bcb60d455f44c0842e1): move `Collection` type defn to array type module 
 
     -   To migrate, users should import `@stdlib/types/array` instead of
-    `@stdlib/types/object` when using the `Collection` type definition.
+        `@stdlib/types/object` when using the `Collection` type definition.
 
 -   [`fa7e420`](https://github.com/stdlib-js/stdlib/commit/fa7e420dcfc39a1af4c43ea43cf6e0353786a519): move complex number types to separate module
--   [`fa7e420`](https://github.com/stdlib-js/stdlib/commit/fa7e420dcfc39a1af4c43ea43cf6e0353786a519): move complex number types to separate module 
 
     -   To migrate, users should import `@stdlib/types/complex` instead of
-    `@stdlib/types/object` when wanting to use complex number type
-    definitions.
+        `@stdlib/types/object` when wanting to use complex number type
+        definitions.
 
--   [`edcd742`](https://github.com/stdlib-js/stdlib/commit/edcd74294f953cdba01e61a0b088942283c79d20): convert `Collection` to generic
--   [`edcd742`](https://github.com/stdlib-js/stdlib/commit/edcd74294f953cdba01e61a0b088942283c79d20): `Collection` is now a generic 
+-   [`edcd742`](https://github.com/stdlib-js/stdlib/commit/edcd74294f953cdba01e61a0b088942283c79d20): `Collection` is now a generic
 
     -   To migrate, users should upgrade their TypeScript version and
-    provide element type information when using the `Collection` type
-    (e.g., `Collection<number>`). By default, the element type is `any`
-    which is equivalent to previous behavior.
+        provide element type information when using the `Collection` type
+        (e.g., `Collection<number>`). By default, the element type is `any`
+        which is equivalent to previous behavior.
 
--   [`164ae5a`](https://github.com/stdlib-js/stdlib/commit/164ae5ad933fb7b0e0817efb6b65a0ec052c44bb): convert `genericndarray` to a generic to allow better specificity
--   [`164ae5a`](https://github.com/stdlib-js/stdlib/commit/164ae5ad933fb7b0e0817efb6b65a0ec052c44bb): convert type to a generic 
+-   [`164ae5a`](https://github.com/stdlib-js/stdlib/commit/164ae5ad933fb7b0e0817efb6b65a0ec052c44bb): convert type to a generic
 
     -   To migrate, users should update usage by providing an explicit type.
-    Existing code should continue to work as is; however, for better
-    specificity and type hints, providing a type is advised.
+        Existing code should continue to work as is; however, for better
+        specificity and type hints, providing a type is advised.
 
 </section>
 
