@@ -22,6 +22,7 @@
 
 <details>
 
+-   [`3723016`](https://github.com/stdlib-js/stdlib/commit/372301698741dabe395a42571d592c181920152f) - **style:** disable lint rule _(by Athan Reines)_
 -   [`8a705c1`](https://github.com/stdlib-js/stdlib/commit/8a705c186da6520d402005633f397819a131581c) - **feat:** add `wasm` namespace _(by Athan Reines)_
 
 </details>
