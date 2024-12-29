@@ -23,6 +23,7 @@
 
 <details>
 
+-   [`0e81d53`](https://github.com/stdlib-js/stdlib/commit/0e81d53283cb6d6e1d1b95194115d424cc719b80) - **style:** resolve lint error _(by Athan Reines)_
 -   [`c82dc90`](https://github.com/stdlib-js/stdlib/commit/c82dc908163b731fd5b7f33010f697779518afda) - **feat:** add index types and reduce duplication _(by Athan Reines)_
 -   [`8e1a0b9`](https://github.com/stdlib-js/stdlib/commit/8e1a0b90271cbd1e64deebe7d893eeb73edf4599) - **feat:** add ndarray dtype maps and index types _(by Athan Reines)_
 
