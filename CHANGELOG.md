@@ -2,6 +2,52 @@
 
 > Package changelog.
 
+<section class="release" id="unreleased">
+
+## Unreleased (2024-12-29)
+
+<section class="features">
+
+### Features
+
+-   [`c82dc90`](https://github.com/stdlib-js/stdlib/commit/c82dc908163b731fd5b7f33010f697779518afda) - add index types and reduce duplication
+-   [`8e1a0b9`](https://github.com/stdlib-js/stdlib/commit/8e1a0b90271cbd1e64deebe7d893eeb73edf4599) - add ndarray dtype maps and index types
+
+</section>
+
+<!-- /.features -->
+
+<section class="commits">
+
+### Commits
+
+<details>
+
+-   [`c82dc90`](https://github.com/stdlib-js/stdlib/commit/c82dc908163b731fd5b7f33010f697779518afda) - **feat:** add index types and reduce duplication _(by Athan Reines)_
+-   [`8e1a0b9`](https://github.com/stdlib-js/stdlib/commit/8e1a0b90271cbd1e64deebe7d893eeb73edf4599) - **feat:** add ndarray dtype maps and index types _(by Athan Reines)_
+
+</details>
+
+</section>
+
+<!-- /.commits -->
+
+<section class="contributors">
+
+### Contributors
+
+A total of 1 person contributed to this release. Thank you to this contributor:
+
+-   Athan Reines
+
+</section>
+
+<!-- /.contributors -->
+
+</section>
+
+<!-- /.release -->
+
 <section class="release" id="v0.4.3">
 
 ## 0.4.3 (2024-11-05)
