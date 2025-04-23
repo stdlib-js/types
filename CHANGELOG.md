@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-02-24)
+## Unreleased (2025-04-23)
 
 <section class="features">
 
@@ -24,6 +24,7 @@
 
 <details>
 
+-   [`245e6f9`](https://github.com/stdlib-js/stdlib/commit/245e6f9961dc243789357c90f8aec3a16bef0bc0) - **refactor:** improve type specificity and ensure consistency between ndarray types _(by Athan Reines)_
 -   [`78bdf25`](https://github.com/stdlib-js/stdlib/commit/78bdf258a7dc0ba33814cb4b3fd1f01a560777e0) - **feat:** add output policies which provide special accommodation for the \"generic\" data type _(by Athan Reines)_
 -   [`0e81d53`](https://github.com/stdlib-js/stdlib/commit/0e81d53283cb6d6e1d1b95194115d424cc719b80) - **style:** resolve lint error _(by Athan Reines)_
 -   [`c82dc90`](https://github.com/stdlib-js/stdlib/commit/c82dc908163b731fd5b7f33010f697779518afda) - **feat:** add index types and reduce duplication _(by Athan Reines)_
