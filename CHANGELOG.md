@@ -4,12 +4,14 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-04-23)
+## Unreleased (2025-04-25)
 
 <section class="features">
 
 ### Features
 
+-   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - add accumulation and index output policies
+-   [`6434c4c`](https://github.com/stdlib-js/stdlib/commit/6434c4c682aabf548a48569b05bd9096dfef10d2) - add array indexing data type kinds
 -   [`78bdf25`](https://github.com/stdlib-js/stdlib/commit/78bdf258a7dc0ba33814cb4b3fd1f01a560777e0) - add output policies which provide special accommodation for the \"generic\" data type
 -   [`c82dc90`](https://github.com/stdlib-js/stdlib/commit/c82dc908163b731fd5b7f33010f697779518afda) - add index types and reduce duplication
 -   [`8e1a0b9`](https://github.com/stdlib-js/stdlib/commit/8e1a0b90271cbd1e64deebe7d893eeb73edf4599) - add ndarray dtype maps and index types
@@ -24,6 +26,8 @@
 
 <details>
 
+-   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - **feat:** add accumulation and index output policies _(by Athan Reines)_
+-   [`6434c4c`](https://github.com/stdlib-js/stdlib/commit/6434c4c682aabf548a48569b05bd9096dfef10d2) - **feat:** add array indexing data type kinds _(by Athan Reines)_
 -   [`245e6f9`](https://github.com/stdlib-js/stdlib/commit/245e6f9961dc243789357c90f8aec3a16bef0bc0) - **refactor:** improve type specificity and ensure consistency between ndarray types _(by Athan Reines)_
 -   [`78bdf25`](https://github.com/stdlib-js/stdlib/commit/78bdf258a7dc0ba33814cb4b3fd1f01a560777e0) - **feat:** add output policies which provide special accommodation for the \"generic\" data type _(by Athan Reines)_
 -   [`0e81d53`](https://github.com/stdlib-js/stdlib/commit/0e81d53283cb6d6e1d1b95194115d424cc719b80) - **style:** resolve lint error _(by Athan Reines)_
