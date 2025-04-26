@@ -1605,6 +1605,11 @@ declare module '@stdlib/types/ndarray' {
 	type OutputPolicy = StrictOutputPolicy | 'boolean_and_generic' | 'integer_index_and_generic' | 'boolean_index_and_generic' | 'mask_index_and_generic' | 'numeric_and_generic' | 'real_and_generic' | 'floating_point_and_generic' | 'real_floating_point_and_generic' | 'complex_floating_point_and_generic' | 'integer_and_generic' | 'signed_integer_and_generic' | 'unsigned_integer_and_generic';
 
 	/**
+	* Input ndarray casting policy.
+	*/
+	type InputCastingPolicy = 'none' | 'promoted' | 'output';
+
+	/**
 	* Array order.
 	*
 	* ## Notes

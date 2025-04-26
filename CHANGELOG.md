@@ -4,12 +4,13 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-04-25)
+## Unreleased (2025-04-26)
 
 <section class="features">
 
 ### Features
 
+-   [`d190eea`](https://github.com/stdlib-js/stdlib/commit/d190eea269491a659fe14618dff48bf701998813) - add input ndarray casting policies
 -   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - add accumulation and index output policies
 -   [`6434c4c`](https://github.com/stdlib-js/stdlib/commit/6434c4c682aabf548a48569b05bd9096dfef10d2) - add array indexing data type kinds
 -   [`78bdf25`](https://github.com/stdlib-js/stdlib/commit/78bdf258a7dc0ba33814cb4b3fd1f01a560777e0) - add output policies which provide special accommodation for the \"generic\" data type
@@ -26,6 +27,7 @@
 
 <details>
 
+-   [`d190eea`](https://github.com/stdlib-js/stdlib/commit/d190eea269491a659fe14618dff48bf701998813) - **feat:** add input ndarray casting policies _(by Athan Reines)_
 -   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - **feat:** add accumulation and index output policies _(by Athan Reines)_
 -   [`6434c4c`](https://github.com/stdlib-js/stdlib/commit/6434c4c682aabf548a48569b05bd9096dfef10d2) - **feat:** add array indexing data type kinds _(by Athan Reines)_
 -   [`245e6f9`](https://github.com/stdlib-js/stdlib/commit/245e6f9961dc243789357c90f8aec3a16bef0bc0) - **refactor:** improve type specificity and ensure consistency between ndarray types _(by Athan Reines)_
