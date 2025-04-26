@@ -10,6 +10,7 @@
 
 ### Features
 
+-   [`0b8d575`](https://github.com/stdlib-js/stdlib/commit/0b8d575e0c787c115519dee6d61e054739ea5512) - add accumulation input casting policy
 -   [`d190eea`](https://github.com/stdlib-js/stdlib/commit/d190eea269491a659fe14618dff48bf701998813) - add input ndarray casting policies
 -   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - add accumulation and index output policies
 -   [`6434c4c`](https://github.com/stdlib-js/stdlib/commit/6434c4c682aabf548a48569b05bd9096dfef10d2) - add array indexing data type kinds
@@ -27,6 +28,7 @@
 
 <details>
 
+-   [`0b8d575`](https://github.com/stdlib-js/stdlib/commit/0b8d575e0c787c115519dee6d61e054739ea5512) - **feat:** add accumulation input casting policy _(by Athan Reines)_
 -   [`d190eea`](https://github.com/stdlib-js/stdlib/commit/d190eea269491a659fe14618dff48bf701998813) - **feat:** add input ndarray casting policies _(by Athan Reines)_
 -   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - **feat:** add accumulation and index output policies _(by Athan Reines)_
 -   [`6434c4c`](https://github.com/stdlib-js/stdlib/commit/6434c4c682aabf548a48569b05bd9096dfef10d2) - **feat:** add array indexing data type kinds _(by Athan Reines)_

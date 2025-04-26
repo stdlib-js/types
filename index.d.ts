@@ -1607,7 +1607,7 @@ declare module '@stdlib/types/ndarray' {
 	/**
 	* Input ndarray casting policy.
 	*/
-	type InputCastingPolicy = 'none' | 'promoted' | 'output';
+	type InputCastingPolicy = 'none' | 'promoted' | 'accumulation' | 'output';
 
 	/**
 	* Array order.
