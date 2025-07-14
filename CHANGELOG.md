@@ -4,12 +4,13 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-05-26)
+## Unreleased (2025-07-14)
 
 <section class="features">
 
 ### Features
 
+-   [`59de9af`](https://github.com/stdlib-js/stdlib/commit/59de9af4fe3b0f11fd63d9325a9bc4c9589a66e6) - add `MatrixOrientation` type definition
 -   [`0b8d575`](https://github.com/stdlib-js/stdlib/commit/0b8d575e0c787c115519dee6d61e054739ea5512) - add accumulation input casting policy
 -   [`d190eea`](https://github.com/stdlib-js/stdlib/commit/d190eea269491a659fe14618dff48bf701998813) - add input ndarray casting policies
 -   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - add accumulation and index output policies
@@ -28,6 +29,7 @@
 
 <details>
 
+-   [`59de9af`](https://github.com/stdlib-js/stdlib/commit/59de9af4fe3b0f11fd63d9325a9bc4c9589a66e6) - **feat:** add `MatrixOrientation` type definition _(by Athan Reines)_
 -   [`0b8d575`](https://github.com/stdlib-js/stdlib/commit/0b8d575e0c787c115519dee6d61e054739ea5512) - **feat:** add accumulation input casting policy _(by Athan Reines)_
 -   [`d190eea`](https://github.com/stdlib-js/stdlib/commit/d190eea269491a659fe14618dff48bf701998813) - **feat:** add input ndarray casting policies _(by Athan Reines)_
 -   [`e931ab0`](https://github.com/stdlib-js/stdlib/commit/e931ab0052e0b209c6e2693247d477a2cc8dc7af) - **feat:** add accumulation and index output policies _(by Athan Reines)_
