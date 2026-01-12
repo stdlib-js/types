@@ -4,12 +4,13 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2025-12-17)
+## Unreleased (2026-01-12)
 
 <section class="features">
 
 ### Features
 
+-   [`b1a1b7f`](https://github.com/stdlib-js/stdlib/commit/b1a1b7fe3c8b93365c70632b726d6797d2af4438) - add support for ndarray data type objects and update existing type definitions
 -   [`061325b`](https://github.com/stdlib-js/stdlib/commit/061325b654cc24df9e3a22db6dc04a043ec3327a) - add data type string type definitions
 -   [`59de9af`](https://github.com/stdlib-js/stdlib/commit/59de9af4fe3b0f11fd63d9325a9bc4c9589a66e6) - add `MatrixOrientation` type definition
 -   [`0b8d575`](https://github.com/stdlib-js/stdlib/commit/0b8d575e0c787c115519dee6d61e054739ea5512) - add accumulation input casting policy
@@ -24,12 +25,29 @@
 
 <!-- /.features -->
 
+<section class="breaking-changes">
+
+### BREAKING CHANGES
+
+-   [`b1a1b7f`](https://github.com/stdlib-js/stdlib/commit/b1a1b7fe3c8b93365c70632b726d6797d2af4438): add support for data type objects
+
+    -   To migrate, users should avoid accessing ndarray properties via
+        property accessors and instead use functional APIs, such as
+        `@stdlib/ndarray/dtype`. If a string is expected, wrap the call
+        to `ndarray/dtype` with `String(dt)` to force the dtype value to
+        always be a string.
+
+</section>
+
+<!-- /.breaking-changes -->
+
 <section class="commits">
 
 ### Commits
 
 <details>
 
+-   [`b1a1b7f`](https://github.com/stdlib-js/stdlib/commit/b1a1b7fe3c8b93365c70632b726d6797d2af4438) - **feat:** add support for ndarray data type objects and update existing type definitions _(by Athan Reines)_
 -   [`061325b`](https://github.com/stdlib-js/stdlib/commit/061325b654cc24df9e3a22db6dc04a043ec3327a) - **feat:** add data type string type definitions _(by Athan Reines)_
 -   [`59de9af`](https://github.com/stdlib-js/stdlib/commit/59de9af4fe3b0f11fd63d9325a9bc4c9589a66e6) - **feat:** add `MatrixOrientation` type definition _(by Athan Reines)_
 -   [`0b8d575`](https://github.com/stdlib-js/stdlib/commit/0b8d575e0c787c115519dee6d61e054739ea5512) - **feat:** add accumulation input casting policy _(by Athan Reines)_
