@@ -16,7 +16,7 @@
 * limitations under the License.
 */
 
-/* eslint-disable max-lines */
+/* eslint-disable max-lines, stdlib/tsdoc-declarations-doctest */
 
 // TypeScript Version: 4.1
 

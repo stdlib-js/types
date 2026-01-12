@@ -47,6 +47,7 @@
 
 <details>
 
+-   [`64fa79c`](https://github.com/stdlib-js/stdlib/commit/64fa79c79b2aa6a98404676be3c05b5048684011) - **style:** disable lint rule _(by Athan Reines)_
 -   [`b1a1b7f`](https://github.com/stdlib-js/stdlib/commit/b1a1b7fe3c8b93365c70632b726d6797d2af4438) - **feat:** add support for ndarray data type objects and update existing type definitions _(by Athan Reines)_
 -   [`061325b`](https://github.com/stdlib-js/stdlib/commit/061325b654cc24df9e3a22db6dc04a043ec3327a) - **feat:** add data type string type definitions _(by Athan Reines)_
 -   [`59de9af`](https://github.com/stdlib-js/stdlib/commit/59de9af4fe3b0f11fd63d9325a9bc4c9589a66e6) - **feat:** add `MatrixOrientation` type definition _(by Athan Reines)_
