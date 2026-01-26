@@ -4,12 +4,13 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-01-12)
+## Unreleased (2026-01-26)
 
 <section class="features">
 
 ### Features
 
+-   [`f6efb5e`](https://github.com/stdlib-js/stdlib/commit/f6efb5ea8dbd31affbd90bb35c8de06b33bb3704) - add support for float16 array types [(#9806)](https://github.com/stdlib-js/stdlib/pull/9806)
 -   [`b1a1b7f`](https://github.com/stdlib-js/stdlib/commit/b1a1b7fe3c8b93365c70632b726d6797d2af4438) - add support for ndarray data type objects and update existing type definitions
 -   [`061325b`](https://github.com/stdlib-js/stdlib/commit/061325b654cc24df9e3a22db6dc04a043ec3327a) - add data type string type definitions
 -   [`59de9af`](https://github.com/stdlib-js/stdlib/commit/59de9af4fe3b0f11fd63d9325a9bc4c9589a66e6) - add `MatrixOrientation` type definition
@@ -47,6 +48,7 @@
 
 <details>
 
+-   [`f6efb5e`](https://github.com/stdlib-js/stdlib/commit/f6efb5ea8dbd31affbd90bb35c8de06b33bb3704) - **feat:** add support for float16 array types [(#9806)](https://github.com/stdlib-js/stdlib/pull/9806) _(by Gururaj Gurram)_
 -   [`64fa79c`](https://github.com/stdlib-js/stdlib/commit/64fa79c79b2aa6a98404676be3c05b5048684011) - **style:** disable lint rule _(by Athan Reines)_
 -   [`b1a1b7f`](https://github.com/stdlib-js/stdlib/commit/b1a1b7fe3c8b93365c70632b726d6797d2af4438) - **feat:** add support for ndarray data type objects and update existing type definitions _(by Athan Reines)_
 -   [`061325b`](https://github.com/stdlib-js/stdlib/commit/061325b654cc24df9e3a22db6dc04a043ec3327a) - **feat:** add data type string type definitions _(by Athan Reines)_
@@ -71,9 +73,10 @@
 
 ### Contributors
 
-A total of 1 person contributed to this release. Thank you to this contributor:
+A total of 2 people contributed to this release. Thank you to the following contributors:
 
 -   Athan Reines
+-   Gururaj Gurram
 
 </section>
 
