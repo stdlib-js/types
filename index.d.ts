@@ -670,7 +670,7 @@ declare module '@stdlib/types/array' {
 	* @example
 	* const buf = new Float16Array( 8 );
 	*
-	* const z: Complex64Array = {
+	* const z: Complex32Array = {
 	*     'byteLength': 16,
 	*     'byteOffset': 0,
 	*     'BYTES_PER_ELEMENT': 2,
@@ -2754,6 +2754,55 @@ declare module '@stdlib/types/ndarray' {
 	* -   The strides array for a ten-dimensional array contains ten elements and each element should be an integer.
 	*/
 	type Strides10D = Collection<number>;
+
+	/**
+	* Interface describing an ndarray descriptor.
+	*
+	* @example
+	* const obj: Descriptor = {
+	*     'data': [ 1, 2, 3 ],
+	*     'dtype': 'generic',
+	*     'shape': [ 3 ],
+	*     'strides': [ 1 ],
+	*     'offset': 0,
+	*     'order': 'row-major'
+	* };
+	*/
+	interface Descriptor {
+		/**
+		* A reference to the underlying data buffer.
+		*/
+		data: ArrayLike<any> | AccessorArrayLike<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+
+		/**
+		* Underlying data type.
+		*/
+		dtype: string | BaseDataTypeObject;
+
+		/**
+		* Array shape.
+		*/
+		shape: Shape;
+
+		/**
+		* Array strides.
+		*/
+		strides: Strides;
+
+		/**
+		* Index offset which specifies the `buffer` index at which to start iterating over array elements.
+		*/
+		offset: number;
+
+		/**
+		* Array order.
+		*
+		* ## Notes
+		*
+		* -   The array order is either row-major (C-style) or column-major (Fortran-style).
+		*/
+		order: Order;
+	}
 
 	/**
 	* Flags and other meta information (e.g., memory layout of the array).

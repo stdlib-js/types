@@ -4,12 +4,13 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-04-24)
+## Unreleased (2026-05-10)
 
 <section class="features">
 
 ### Features
 
+-   [`009e8bf`](https://github.com/stdlib-js/stdlib/commit/009e8bfdd4aa743569580ece4a034cad5287926d) - add `Descriptor` interface in `@stdlib/ndarray` module
 -   [`b9502d5`](https://github.com/stdlib-js/stdlib/commit/b9502d5bdeb15982528aa7777f399a291c9dc6b8) - add complex32 type definitions and add `Float16Array` stub
 -   [`f6efb5e`](https://github.com/stdlib-js/stdlib/commit/f6efb5ea8dbd31affbd90bb35c8de06b33bb3704) - add support for float16 array types [(#9806)](https://github.com/stdlib-js/stdlib/pull/9806)
 -   [`b1a1b7f`](https://github.com/stdlib-js/stdlib/commit/b1a1b7fe3c8b93365c70632b726d6797d2af4438) - add support for ndarray data type objects and update existing type definitions
@@ -49,6 +50,8 @@
 
 <details>
 
+-   [`009e8bf`](https://github.com/stdlib-js/stdlib/commit/009e8bfdd4aa743569580ece4a034cad5287926d) - **feat:** add `Descriptor` interface in `@stdlib/ndarray` module _(by Athan Reines)_
+-   [`5a06940`](https://github.com/stdlib-js/stdlib/commit/5a06940ac26e639280b53b34b6707f6ac714d28a) - **docs:** fix typos and examples [(#11761)](https://github.com/stdlib-js/stdlib/pull/11761) _(by Philipp Burckhardt, Athan Reines)_
 -   [`b9502d5`](https://github.com/stdlib-js/stdlib/commit/b9502d5bdeb15982528aa7777f399a291c9dc6b8) - **feat:** add complex32 type definitions and add `Float16Array` stub _(by Athan Reines)_
 -   [`f6efb5e`](https://github.com/stdlib-js/stdlib/commit/f6efb5ea8dbd31affbd90bb35c8de06b33bb3704) - **feat:** add support for float16 array types [(#9806)](https://github.com/stdlib-js/stdlib/pull/9806) _(by Gururaj Gurram)_
 -   [`64fa79c`](https://github.com/stdlib-js/stdlib/commit/64fa79c79b2aa6a98404676be3c05b5048684011) - **style:** disable lint rule _(by Athan Reines)_
@@ -75,10 +78,11 @@
 
 ### Contributors
 
-A total of 2 people contributed to this release. Thank you to the following contributors:
+A total of 3 people contributed to this release. Thank you to the following contributors:
 
 -   Athan Reines
 -   Gururaj Gurram
+-   Philipp Burckhardt
 
 </section>
 
