@@ -52,6 +52,7 @@
 
 <details>
 
+-   [`bccd3c3`](https://github.com/stdlib-js/stdlib/commit/bccd3c3ff447205446f7a41b19134620f8ce2642) - **docs:** follow-up fixes for commits merged to `develop` on 2026-06-03 [(#12511)](https://github.com/stdlib-js/stdlib/pull/12511) _(by Philipp Burckhardt)_
 -   [`175f77b`](https://github.com/stdlib-js/stdlib/commit/175f77bf60886a7a04c68be4ae5952efaee59e43) - **feat:** add dtype type definitions _(by Athan Reines)_
 -   [`6d18f6b`](https://github.com/stdlib-js/stdlib/commit/6d18f6bf0dbd7f1e638c9c6f73157f77c709c11d) - **feat:** add `Int64` and `Uint64` number types _(by Athan Reines)_
 -   [`009e8bf`](https://github.com/stdlib-js/stdlib/commit/009e8bfdd4aa743569580ece4a034cad5287926d) - **feat:** add `Descriptor` interface in `@stdlib/ndarray` module _(by Athan Reines)_
