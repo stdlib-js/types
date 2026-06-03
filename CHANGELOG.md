@@ -10,6 +10,7 @@
 
 ### Features
 
+-   [`175f77b`](https://github.com/stdlib-js/stdlib/commit/175f77bf60886a7a04c68be4ae5952efaee59e43) - add dtype type definitions
 -   [`6d18f6b`](https://github.com/stdlib-js/stdlib/commit/6d18f6bf0dbd7f1e638c9c6f73157f77c709c11d) - add `Int64` and `Uint64` number types
 -   [`009e8bf`](https://github.com/stdlib-js/stdlib/commit/009e8bfdd4aa743569580ece4a034cad5287926d) - add `Descriptor` interface in `@stdlib/ndarray` module
 -   [`b9502d5`](https://github.com/stdlib-js/stdlib/commit/b9502d5bdeb15982528aa7777f399a291c9dc6b8) - add complex32 type definitions and add `Float16Array` stub
@@ -51,6 +52,7 @@
 
 <details>
 
+-   [`175f77b`](https://github.com/stdlib-js/stdlib/commit/175f77bf60886a7a04c68be4ae5952efaee59e43) - **feat:** add dtype type definitions _(by Athan Reines)_
 -   [`6d18f6b`](https://github.com/stdlib-js/stdlib/commit/6d18f6bf0dbd7f1e638c9c6f73157f77c709c11d) - **feat:** add `Int64` and `Uint64` number types _(by Athan Reines)_
 -   [`009e8bf`](https://github.com/stdlib-js/stdlib/commit/009e8bfdd4aa743569580ece4a034cad5287926d) - **feat:** add `Descriptor` interface in `@stdlib/ndarray` module _(by Athan Reines)_
 -   [`5a06940`](https://github.com/stdlib-js/stdlib/commit/5a06940ac26e639280b53b34b6707f6ac714d28a) - **docs:** fix typos and examples [(#11761)](https://github.com/stdlib-js/stdlib/pull/11761) _(by Philipp Burckhardt, Athan Reines)_

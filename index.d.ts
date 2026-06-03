@@ -5403,9 +5403,24 @@ declare module '@stdlib/types/complex' {
 */
 declare module '@stdlib/types/number' {
 	/**
+	* Signed integer data type.
+	*/
+	type SignedIntegerDataType = 'int64';
+
+	/**
+	* Unsigned integer data type.
+	*/
+	type UnsignedIntegerDataType = 'uint64';
+
+	/**
+	* Integer data type.
+	*/
+	type IntegerDataType = SignedIntegerDataType | UnsignedIntegerDataType;
+
+	/**
 	* Number data type.
 	*/
-	type NumberDataType = 'int64' | 'uint64';
+	type NumberDataType = IntegerDataType;
 
 	/**
 	* A unsigned 64-bit integer.
