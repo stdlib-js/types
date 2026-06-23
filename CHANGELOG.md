@@ -2,6 +2,40 @@
 
 > Package changelog.
 
+<section class="release" id="unreleased">
+
+## Unreleased (2026-06-23)
+
+<section class="commits">
+
+### Commits
+
+<details>
+
+-   [`4a718f5`](https://github.com/stdlib-js/stdlib/commit/4a718f590577cad2ba8e232253dc91680a939027) - **refactor:** improve type specificity for `Float16Array` _(by Athan Reines)_
+
+</details>
+
+</section>
+
+<!-- /.commits -->
+
+<section class="contributors">
+
+### Contributors
+
+A total of 1 person contributed to this release. Thank you to this contributor:
+
+-   Athan Reines
+
+</section>
+
+<!-- /.contributors -->
+
+</section>
+
+<!-- /.release -->
+
 <section class="release" id="v0.5.1">
 
 ## 0.5.1 (2026-06-05)
