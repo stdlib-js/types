@@ -6,12 +6,23 @@
 
 ## Unreleased (2026-06-23)
 
+<section class="bug-fixes">
+
+### Bug Fixes
+
+-   [`fe060a9`](https://github.com/stdlib-js/stdlib/commit/fe060a97110952ca950095b70672673b9ec88722) - add missing semicolon
+
+</section>
+
+<!-- /.bug-fixes -->
+
 <section class="commits">
 
 ### Commits
 
 <details>
 
+-   [`fe060a9`](https://github.com/stdlib-js/stdlib/commit/fe060a97110952ca950095b70672673b9ec88722) - **fix:** add missing semicolon _(by Athan Reines)_
 -   [`4a718f5`](https://github.com/stdlib-js/stdlib/commit/4a718f590577cad2ba8e232253dc91680a939027) - **refactor:** improve type specificity for `Float16Array` _(by Athan Reines)_
 
 </details>
