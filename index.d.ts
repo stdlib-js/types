@@ -62,6 +62,11 @@ declare module '@stdlib/types/array' {
 		readonly BYTES_PER_ELEMENT: 2;
 
 		/**
+		* Number of elements.
+		*/
+		readonly length: number;
+
+		/**
 		* Indexed properties.
 		*/
 		[ index: number ]: number;

@@ -10,6 +10,7 @@
 
 ### Bug Fixes
 
+-   [`64d325f`](https://github.com/stdlib-js/stdlib/commit/64d325f6436afcb4411471241799a03aefdf57df) - add missing `length` property
 -   [`fe060a9`](https://github.com/stdlib-js/stdlib/commit/fe060a97110952ca950095b70672673b9ec88722) - add missing semicolon
 
 </section>
@@ -22,6 +23,7 @@
 
 <details>
 
+-   [`64d325f`](https://github.com/stdlib-js/stdlib/commit/64d325f6436afcb4411471241799a03aefdf57df) - **fix:** add missing `length` property _(by Athan Reines)_
 -   [`fe060a9`](https://github.com/stdlib-js/stdlib/commit/fe060a97110952ca950095b70672673b9ec88722) - **fix:** add missing semicolon _(by Athan Reines)_
 -   [`4a718f5`](https://github.com/stdlib-js/stdlib/commit/4a718f590577cad2ba8e232253dc91680a939027) - **refactor:** improve type specificity for `Float16Array` _(by Athan Reines)_
 
