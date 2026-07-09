@@ -4,7 +4,17 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-07-04)
+## Unreleased (2026-07-09)
+
+<section class="features">
+
+### Features
+
+-   [`ec14192`](https://github.com/stdlib-js/stdlib/commit/ec14192a3fbb88dc5d5e2964e973f6771bd4835a) - add `Uint64Array` support [(#13395)](https://github.com/stdlib-js/stdlib/pull/13395)
+
+</section>
+
+<!-- /.features -->
 
 <section class="bug-fixes">
 
@@ -23,6 +33,7 @@
 
 <details>
 
+-   [`ec14192`](https://github.com/stdlib-js/stdlib/commit/ec14192a3fbb88dc5d5e2964e973f6771bd4835a) - **feat:** add `Uint64Array` support [(#13395)](https://github.com/stdlib-js/stdlib/pull/13395) _(by Divit Jain, Athan Reines)_
 -   [`64d325f`](https://github.com/stdlib-js/stdlib/commit/64d325f6436afcb4411471241799a03aefdf57df) - **fix:** add missing `length` property _(by Athan Reines)_
 -   [`fe060a9`](https://github.com/stdlib-js/stdlib/commit/fe060a97110952ca950095b70672673b9ec88722) - **fix:** add missing semicolon _(by Athan Reines)_
 -   [`4a718f5`](https://github.com/stdlib-js/stdlib/commit/4a718f590577cad2ba8e232253dc91680a939027) - **refactor:** improve type specificity for `Float16Array` _(by Athan Reines)_
@@ -37,9 +48,10 @@
 
 ### Contributors
 
-A total of 1 person contributed to this release. Thank you to this contributor:
+A total of 2 people contributed to this release. Thank you to the following contributors:
 
 -   Athan Reines
+-   Divit Jain
 
 </section>
 
