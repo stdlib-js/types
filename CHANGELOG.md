@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-07-09)
+## Unreleased (2026-07-10)
 
 <section class="features">
 
@@ -33,6 +33,7 @@
 
 <details>
 
+-   [`e713916`](https://github.com/stdlib-js/stdlib/commit/e713916fe28d3fa9bfe95766a1106cf78453e3b4) - **chore:** clean-up [(#13409)](https://github.com/stdlib-js/stdlib/pull/13409) _(by Philipp Burckhardt)_
 -   [`ec14192`](https://github.com/stdlib-js/stdlib/commit/ec14192a3fbb88dc5d5e2964e973f6771bd4835a) - **feat:** add `Uint64Array` support [(#13395)](https://github.com/stdlib-js/stdlib/pull/13395) _(by Divit Jain, Athan Reines)_
 -   [`64d325f`](https://github.com/stdlib-js/stdlib/commit/64d325f6436afcb4411471241799a03aefdf57df) - **fix:** add missing `length` property _(by Athan Reines)_
 -   [`fe060a9`](https://github.com/stdlib-js/stdlib/commit/fe060a97110952ca950095b70672673b9ec88722) - **fix:** add missing semicolon _(by Athan Reines)_
@@ -48,10 +49,11 @@
 
 ### Contributors
 
-A total of 2 people contributed to this release. Thank you to the following contributors:
+A total of 3 people contributed to this release. Thank you to the following contributors:
 
 -   Athan Reines
 -   Divit Jain
+-   Philipp Burckhardt
 
 </section>
 
