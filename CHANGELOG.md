@@ -4,12 +4,13 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-07-10)
+## Unreleased (2026-08-13)
 
 <section class="features">
 
 ### Features
 
+-   [`b77ce8d`](https://github.com/stdlib-js/stdlib/commit/b77ce8da93e2f5950fb1407288e6299b456d53e8) - add support for `Int64Array` and other newer array dtypes
 -   [`ec14192`](https://github.com/stdlib-js/stdlib/commit/ec14192a3fbb88dc5d5e2964e973f6771bd4835a) - add `Uint64Array` support [(#13395)](https://github.com/stdlib-js/stdlib/pull/13395)
 
 </section>
@@ -33,6 +34,7 @@
 
 <details>
 
+-   [`b77ce8d`](https://github.com/stdlib-js/stdlib/commit/b77ce8da93e2f5950fb1407288e6299b456d53e8) - **feat:** add support for `Int64Array` and other newer array dtypes _(by Athan Reines)_
 -   [`e713916`](https://github.com/stdlib-js/stdlib/commit/e713916fe28d3fa9bfe95766a1106cf78453e3b4) - **chore:** clean-up [(#13409)](https://github.com/stdlib-js/stdlib/pull/13409) _(by Philipp Burckhardt)_
 -   [`ec14192`](https://github.com/stdlib-js/stdlib/commit/ec14192a3fbb88dc5d5e2964e973f6771bd4835a) - **feat:** add `Uint64Array` support [(#13395)](https://github.com/stdlib-js/stdlib/pull/13395) _(by Divit Jain, Athan Reines)_
 -   [`64d325f`](https://github.com/stdlib-js/stdlib/commit/64d325f6436afcb4411471241799a03aefdf57df) - **fix:** add missing `length` property _(by Athan Reines)_
