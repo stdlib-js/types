@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-08-14)
+## Unreleased (2026-08-19)
 
 <section class="features">
 
@@ -34,6 +34,7 @@
 
 <details>
 
+-   [`72b23ea`](https://github.com/stdlib-js/stdlib/commit/72b23ea594cad1265cd358ade0e366d682f5858d) - **chore:** clean-up [(#14383)](https://github.com/stdlib-js/stdlib/pull/14383) _(by Philipp Burckhardt)_
 -   [`aa48533`](https://github.com/stdlib-js/stdlib/commit/aa485337d84a2bf261c43770a1526dee8d1b7f45) - **style:** resolve lint errors [(#14229)](https://github.com/stdlib-js/stdlib/pull/14229) _(by Philipp Burckhardt)_
 -   [`b77ce8d`](https://github.com/stdlib-js/stdlib/commit/b77ce8da93e2f5950fb1407288e6299b456d53e8) - **feat:** add support for `Int64Array` and other newer array dtypes _(by Athan Reines)_
 -   [`e713916`](https://github.com/stdlib-js/stdlib/commit/e713916fe28d3fa9bfe95766a1106cf78453e3b4) - **chore:** clean-up [(#13409)](https://github.com/stdlib-js/stdlib/pull/13409) _(by Philipp Burckhardt)_
